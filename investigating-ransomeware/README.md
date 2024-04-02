@@ -120,8 +120,25 @@ By searching `“index=botsv1 sourcetype=winregistry friendlyname”`, we can us
 - **IP Address:** 192.168.250.100
 - **USB Key Name:** MIRANDA_PRI
 
+### 3. Identifying the Malicious File
 
+**Question:** After the USB insertion, a file execution occurs that is the initial Cerber infection. This file execution creates two additional processes. What is the name of the file?
 
+**Sourcetypes:**
+- XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
+- Using the search query provided on the Splunk App, we can find the infected system on an external drive:
 
+   ```
+      index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational host=we8105desk (CommandLine="*d:\\*" OR ParentCommandLine="*d:\\*") 
+      | table _time CommandLine ParentCommandLine 
+      | sort _time
+   ```
 
+![image8](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/3407bf4f-6fe5-4f2f-8664-55e25dc61777)
+
+### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
+- **USB Key Name:** MIRANDA_PRI
+- **Malicious File:** Miranda_Tate_unveiled.dotm 
