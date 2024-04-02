@@ -50,31 +50,35 @@ Conducting investigations is a core component of cybersecurity. When we detect s
 
 ### Incident Overview:
 - **Date and Time:** August 24, 2016
-- **Affected Machine:** `we8105desk` 
+- **Affected Machine:** we8105desk
 - **Type of Attack:** Ransomware (Cerber)
 - **Impact:** Data encryption, potential data loss, disruption of operations
 
 ### 1. Identifying the IP Address of a Victim System
-- **Question:** What was the most likely IP address of `we8105desk` on August 24, 2016?
-- **Procedure:** Since we are given an identifier of the host and timestamp, we can use this to examine the logs. 
+
+**Question:** What was the most likely IP address of we8105desk on August 24, 2016?
+
+**Procedure:** Since we are given an identifier of the host and timestamp, we can use this to examine the logs.
 
 - By searching `"index=botsv1 we8105desk"` and adjusting the specific timestamp to August 24, 2016, we can now access all the data sources related to the incident.
 ![image_1](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/c170cedc-84af-4f01-8a9a-583d1d906c7d)
 
-- By clicking the host on the left side fields we can see the top host.
+- By clicking the host on the left side fields, we can see the top host.
 ![image2](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/f5c2408d-9366-474c-a429-a39f5cb70e59)
 
-- By clicking the source on the left side fields we can see the top source.
+- By clicking the source on the left side fields, we can see the top source.
 ![image3](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/e1d0ebd5-9153-498a-be21-2a9becb1fd9f)
 
-- There are a lot of commands to get the same results you want in splunk. For this i will use the top command to get the top 10 by default src_ip by search the query below:
-“index=botsv1 we8105desk sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational 
-| top src_ip”
-![image4](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/700b56a4-3fb4-41e5-951b-97bf7cff8af9)
+- There are a lot of commands to get the same results you want in Splunk. For this, I will use the `top` command to get the top 10 by default `src_ip` by searching the query below:
 
-Threat Details:
-Hostname: we8105desk
-IP Address: 192.168.250.100
+    ```spl
+    index=botsv1 we8105desk sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational | top src_ip
+    ```
+    ![image4](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/700b56a4-3fb4-41e5-951b-97bf7cff8af9)
+
+### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
 
 
 
