@@ -179,13 +179,13 @@ Using our threat details search again for the host and finding the top destinati
      index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational host=we8105desk src=we8105desk.waynecorpinc.local 
      | top dest_ip
   ```
-      ![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/e03c9e6b-324d-4d3d-b65d-e8511ed7553c)
+![image11](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/e03c9e6b-324d-4d3d-b65d-e8511ed7553c)
 
   - Using the keyword "fileshare" on winregistry, we can see all the file shares that happened on the host:
-![image11](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/fe093dd5-1ad0-4a7f-bb8c-ac1164b971c5)
+![image12](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/fe093dd5-1ad0-4a7f-bb8c-ac1164b971c5)
 
   - Expanding the raw logs to see the file path of the file share, we use the key_path field name to get the top file path:
-![image12](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/854a9f67-76f6-4d13-8bee-64f420865dde)
+![image13](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/854a9f67-76f6-4d13-8bee-64f420865dde)
 
   - To get the hostname of that IP Address on the file share, we filter the IP address and use the top command on the dest_host field name:
 
@@ -193,7 +193,7 @@ Using our threat details search again for the host and finding the top destinati
 index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 192.168.250.20 
 | top dest_host
 ```
-![image13](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/b52821b4-13db-4b95-b35c-30dcf33a9c68)
+![image14](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/b52821b4-13db-4b95-b35c-30dcf33a9c68)
 
 ### Threat Details:
 - **Hostname:** we8105desk
