@@ -58,6 +58,6 @@ Conducting investigations is a core component of cybersecurity. When we detect s
 - **Question:** What was the most likely IP address of `we8105desk` on August 24, 2016?
 - **Procedure:** Since we are given an identifier of the host and timestamp, we can use this to examine the logs. 
 
-- By searching `"index=botsv1 We8105desk"` and adjusting the specific timestamp to August 24, 2016, we can now access all the data sources related to the incident.
+- By searching `"index=botsv1 we8105desk"` and adjusting the specific timestamp to August 24, 2016, we can now access all the data sources related to the incident.
 ![image_1](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/c170cedc-84af-4f01-8a9a-583d1d906c7d)
 
