@@ -1,4 +1,4 @@
-![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9b25903b-5b90-40ae-a496-bdf4bd2fde5f)# Investigating Ransomware with Splunk
+![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/047ee095-9d64-4aee-9986-8835b9b81bdb)![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9b25903b-5b90-40ae-a496-bdf4bd2fde5f)# Investigating Ransomware with Splunk
 
 ## Overview
 Conducting investigations is a core component of cybersecurity. When we detect something, it's essential to figure out what happened by asking questions like: who, what, where, when, why, and how. Investigations can be either reactive or proactive, depending on the context.
@@ -263,7 +263,7 @@ index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 19
    index=botsv1 sourcetype=fgt_utm src=192.168.250.100 mhtr.jpg 
    | table _time src dest msg url action
 ```
-![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/731f5d46-0555-442d-b00d-4456c7457405)
+![image18](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/731f5d46-0555-442d-b00d-4456c7457405)
 
 ### Threat Details:
 - **Hostname:** we8105desk
@@ -278,4 +278,45 @@ index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 19
 
 ### Initial Connection
 - solidaritedeproximite.org
+
+### 8. Event Chaining - Identifying Parent/Child Processes
+
+**Question:** What is the parent process ID of `121214.tmp`?
+
+**Sourcetypes:**
+- XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+
+Starting with this query below to filter `121214.tmp` on Sysmon logs:
+![image19](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/ce462d0e-672e-4bdc-a80b-acf132a9c661)
+
+- Focusing on the `CommandLine` field name and displaying important fields in tabular form from this search query:
+
+```
+   index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational 121214.tmp CommandLine=* 
+   | reverse 
+   | table _time ParentCommandLine ParentProcessId ProcessId CommandLine
+```
+![image20](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/bdb0afd7-3930-4b6e-98c9-98c36de056e9)
+
+### 9. Determine Which Signatures Specific to the Ransomware Alerted
+
+**Question:** Amongst the Suricata signatures that detected the Cerber malware, which signature ID alerted the fewest number of times?
+
+**Sourcetypes:**
+- suricata
+
+Searching the Suricata logs and filtering the signature type to "cerber":
+![image21](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/c0c38e66-eb5d-46ad-88e5-1364c6dd4303)
+
+- Suricata signatures and IDs sorted from lowest to highest:
+```
+   index=botsv1 sourcetype=suricata alert.signature=*cerber* 
+   | stats count by alert.signature alert.signature_id 
+   | sort count
+```
+ ![image22](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/5d8d1338-81d7-4243-bfc4-3ddc5a8de4f2)
+
+  
+
+
  
