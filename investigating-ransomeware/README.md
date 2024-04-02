@@ -80,6 +80,48 @@ Conducting investigations is a core component of cybersecurity. When we detect s
 - **Hostname:** we8105desk
 - **IP Address:** 192.168.250.100
 
+### 2. Identifying Removable Media
+
+**Question:** What is the name of the USB key inserted by Bob Smith?
+
+If we don’t know much about USB drives and Windows, the first thing you could do is Google for something like the search terms below and do some reading:
+
+- finding the usb name in windows registry logs
+- finding windows registry usb name site:microsoft.com
+
+**Resources:**
+- [USB Device Registry Entries](usb_device_registry_entries_link)
+- [Splunk Answers - USB Detection](splunk_answers_usb_detection_link)
+
+**Sourcetypes:**
+- Winregistry
+
+By searching `“index=botsv1 sourcetype=winregistry friendlyname”`, we can use the “friendlyname” keyword given in the article.
+
+![image5](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/045b15cd-0c3c-410f-b890-2332d1e9a66c)
+
+- Expand the raw logs to see the full details of the logs as well as the different fields. By doing this you can look for fields that you can use to filter much more specific events related to this USB.
+
+![image6](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/b85f85e7-8b0e-4573-84f7-ff89aae60316)
+
+- Based on the search filter we have gathered, I built an optimized and specific search query to find the USB key name:
+
+    ```
+    (index=botsv1 sourcetype=winregistry object=friendlyname object_category=registry dest=we8105desk event_status="(0)The operation completed successfully.")
+    | table user, object, dest, _time, data, status 
+    | rename user as who, object as what, dest as where, _time as when, data as usb_key_name 
+    | convert ctime(when)
+    ```
+
+![image7](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/de5ab933-c0da-4ab5-be13-b7e59c397774)
+
+### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
+- **USB Key Name:** MIRANDA_PRI
+
+
+
 
 
 
