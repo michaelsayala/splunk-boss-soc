@@ -1,4 +1,4 @@
-# Investigating Ransomware with Splunk
+![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9b25903b-5b90-40ae-a496-bdf4bd2fde5f)# Investigating Ransomware with Splunk
 
 ## Overview
 Conducting investigations is a core component of cybersecurity. When we detect something, it's essential to figure out what happened by asking questions like: who, what, where, when, why, and how. Investigations can be either reactive or proactive, depending on the context.
@@ -241,7 +241,40 @@ index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 19
 ### Initial Connection
 - solidaritedeproximite.org
     
+### 7. Identifying Cryptor Code Filename and Origin
+
+**Question:** The malware downloads a file that contains the Cerber ransomware cryptor code. What is the name of that file?
+
+**Sourcetypes:**
+- stream:http, suricata, fgt_utm
+
+- Starting with the source IP address "192.168.250.100" and the suspicious domain "solidaritedeproxomite.org", filter for stream logs:
+
+```
+   index=botsv1 sourcetype=stream:http src=192.168.250.100 url=*solidaritedeproximite.org*
+   | table src dest_ip url _time
+```
+![image17](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/06f7720e-c547-47c9-ac09-1984c1f5d8cd)
 
 
+- Since we have seen a suspicious image on that domain, check the FortiGate firewall for the data it captured from "mhtr.jpg":
+  
+```
+   index=botsv1 sourcetype=fgt_utm src=192.168.250.100 mhtr.jpg 
+   | table _time src dest msg url action
+```
+![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/731f5d46-0555-442d-b00d-4456c7457405)
 
+### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
+- **USB Key Name:** MIRANDA_PRI
+- **Malicious File:** Miranda_Tate_unveiled.dotm 
+
+## File Server
+- **Hostname:** we9041srv
+- **IP Address:** 192.168.250.20, 92.22.104.182
+
+### Initial Connection
+- solidaritedeproximite.org
  
