@@ -205,4 +205,43 @@ index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 19
 - **Hostname:** we9041srv
 - **IP Address:** 192.168.250.20
 
+### 6. Identifying the First Suspect Domain Visited by the Victim
+
+**Question:** What was the first suspicious domain visited by we8105desk on August 24, 2016?
+
+**Sourcetypes:**
+- stream:dns
+
+- To find the historical traffic from the IP address "192.168.250.100", I initiated the following search:
+   ```
+      index=botsv1 sourcetype=stream:DNS src=192.168.250.100
+   ```
+   ![image15](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/4346acee-fe95-4c8b-b7b6-bbe5fb59fb62)
+
+- By using the app filter to exclude legitimate domains and specifying the source and destination IP addresses, it became easier to identify the traffic:
+    ```
+          index=botsv1 sourcetype=stream:DNS src=192.168.250.100 record_type=A NOT (query{}=*.microsoft.com OR query{}=*.waynecorpinc.local OR query{}=*.bing.com 
+          OR query{}=isatap OR query{}=wpad OR query{}=*.windows.com OR query{}=*.msftncsi.com) 
+          | table _time query{} src dest 
+          | reverse 
+    ```
+   ![image16](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/638dea72-fea2-4d05-bc21-333f4d284b3d)
+
+  
+  ### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
+- **USB Key Name:** MIRANDA_PRI
+- **Malicious File:** Miranda_Tate_unveiled.dotm 
+
+## File Server
+- **Hostname:** we9041srv
+- **IP Address:** 192.168.250.20
+
+### Initial Connection
+- solidaritedeproximite.org
+    
+
+
+
  
