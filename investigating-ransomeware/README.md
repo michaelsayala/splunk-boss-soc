@@ -142,3 +142,28 @@ By searching `“index=botsv1 sourcetype=winregistry friendlyname”`, we can us
 - **IP Address:** 192.168.250.100
 - **USB Key Name:** MIRANDA_PRI
 - **Malicious File:** Miranda_Tate_unveiled.dotm 
+
+### 4. Identifying Suspicious Processes Executing
+
+**Question:** During the initial Cerber infection, a VB script is run. The entire script from this execution, pre-pended by the name of the launching .exe, can be found in a field in Splunk. What is the length in characters of this field?
+
+**Sourcetypes:**
+- XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+
+Using the initial search provided by the app, we can see all the executable files:
+![image9](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/29e1219b-e76a-4549-a2d8-e281ee680ec8)
+
+Expanding all the fields on the left side screen, we see the field name "CommandLine":
+![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/cbadabb2-25de-4162-8b1b-e15d36781f93)
+
+Using the Text Function "len" to return the character length of a string, we can find the command with the top length:
+
+![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9fc3cef3-3a4e-4fad-aef3-f75f979eca91)
+
+### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
+- **USB Key Name:** MIRANDA_PRI
+- **Malicious File:** Miranda_Tate_unveiled.dotm
+
+
