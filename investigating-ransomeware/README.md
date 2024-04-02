@@ -274,6 +274,7 @@ index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 19
 ## File Server
 - **Hostname:** we9041srv
 - **IP Address:** 192.168.250.20, 92.22.104.182
+- **File Name:** mhtr.jpg
 
 ### Initial Connection
 - solidaritedeproximite.org
