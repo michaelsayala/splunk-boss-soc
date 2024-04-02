@@ -90,8 +90,8 @@ If we don’t know much about USB drives and Windows, the first thing you could 
 - finding windows registry usb name site:microsoft.com
 
 **Resources:**
-- [USB Device Registry Entries](usb_device_registry_entries_link)
-- [Splunk Answers - USB Detection](splunk_answers_usb_detection_link)
+- [USB Device Registry Entries]([usb_device_registry_entries_link](https://learn.microsoft.com/en-gb/windows-hardware/drivers/usbcon/?redirectedfrom=MSDN))
+- [Splunk Answers - USB Detection]([splunk_answers_usb_detection_link](https://community.splunk.com/t5/Splunk-Search/Finding-USB-and-Removable-Media-Detection/td-p/273918))
 
 **Sourcetypes:**
 - Winregistry
