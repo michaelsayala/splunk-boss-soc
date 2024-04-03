@@ -1,4 +1,4 @@
-# Investigating Ransomware with Splunk
+![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/4ea8b705-5910-466c-acf8-c58f170161e7)# Investigating Ransomware with Splunk
 
 ## Overview
 Conducting investigations is a core component of cybersecurity. When we detect something, it's essential to figure out what happened by asking questions like: who, what, where, when, why, and how. Investigations can be either reactive or proactive, depending on the context.
@@ -338,9 +338,51 @@ Searching the Suricata logs and filtering the signature type to "cerber":
   ```
 ![image24](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/ecc22ca9-b361-4a7f-a0f4-2faaeb5f13ed)
 
+### 11. Damage Assessment - Identifying Distinct PDFs Encrypted
+
+**Question:** How many distinct PDFs did the ransomware encrypt on the remote file server?
+
+**Resources:**
+- Microsoft Sysmon Event Code Reference
+
+**Sourcetypes:**
+- XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+
+- Search through all "win" sourcetypes and filter the keyword "pdf":
+
+![image25](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/5d9f9497-2adb-42a2-9230-e647c67cf454)
+
+- Add the source address of the machine and count the unique PDF files in the "Relative_Target_Name" field name:
+
+```
+   index=botsv1 sourcetype=*win* pdf dest=we9041srv.waynecorpinc.local Source_Address=192.168.250.100 
+| stats dc(Relative_Target_Name) AS unique_count
+```
+![image26](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/ab064e88-b9e8-4516-8302-38373c1527e7)
+
+### 12. Identifying Redirection Post Encryption to a Domain
+
+**Question:** What fully qualified domain name (FQDN) does the Cerber ransomware attempt to direct the user to at the end of its encryption phase?
+
+**Resources:**
+- URL Toolbox on Splunkbase
+
+**Sourcetypes:**
+- stream:dns
+
+- Initial search query for the specific ip address "192.168.250.100"
+![image27](https github.com/michaelsayala/splunk-boss-soc/assets/110712766/55b7f5f1-4b3b-4258-bf29-2bf43b2f1d5a)
+
+- To find out the cerber ransomeware attempt to direct re-use the url filter we whitelist before
+
+```
+   index=botsv1 sourcetype=stream:DNS src=192.168.250.100 record_type=A NOT (query{}=*.microsoft.com OR query{}=*.waynecorpinc.local OR query{}=*.bing.com OR query{}=isatap OR query{}=wpad OR query{}=*.windows.com OR query{}=*.msftncsi.com) 
+   | table _time query{} src dest 
+   | sort - _time
+```
+![image28](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/377d6deb-0e6e-4330-bcae-157f80782f02)
 
 
-  
 
 
  
