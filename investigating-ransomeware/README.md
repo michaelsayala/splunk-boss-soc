@@ -1,4 +1,4 @@
-![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/047ee095-9d64-4aee-9986-8835b9b81bdb)![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9b25903b-5b90-40ae-a496-bdf4bd2fde5f)# Investigating Ransomware with Splunk
+# Investigating Ransomware with Splunk
 
 ## Overview
 Conducting investigations is a core component of cybersecurity. When we detect something, it's essential to figure out what happened by asking questions like: who, what, where, when, why, and how. Investigations can be either reactive or proactive, depending on the context.
@@ -315,6 +315,30 @@ Searching the Suricata logs and filtering the signature type to "cerber":
    | sort count
 ```
  ![image22](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/5d8d1338-81d7-4243-bfc4-3ddc5a8de4f2)
+
+### 10. Damage Assessment - Identifying Encrypted Text Files
+
+**Question:** The Cerber ransomware encrypts files located in Bob Smith's Windows profile. How many `.txt` files does it encrypt?
+
+**Resources:**
+- Microsoft Sysmon Event Code Reference
+
+**Sourcetypes:**
+- XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+
+- Searching all `.txt` file extensions in Windows Sysmon Logs:
+
+![image23](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/f038b966-78dd-4526-bb48-6a4c1ddbc09b)
+
+- Filtering the specific "Event Code 2" and `TargetFilename` of the target user:
+
+  ```
+   index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational host=we8105desk *.txt EventCode=2 TargetFilename="C:\\Users\\bob.smith.WAYNECORPINC\\*.txt" 
+   | stats dc(TargetFilename) AS unique_count
+  ```
+![image24](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/ecc22ca9-b361-4a7f-a0f4-2faaeb5f13ed)
+
+
 
   
 
