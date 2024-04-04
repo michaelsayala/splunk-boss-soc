@@ -157,7 +157,10 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
 - Using the initial search provided by the app, we can retrieve all the executable files:
-![image9](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/29e1219b-e76a-4549-a2d8-e281ee680ec8)
+   ```
+      index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational *.exe
+   ```
+![image9](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/5b0ad6f3-2a49-4890-9872-c6cb1ca79455)
 
 - Expanding all the fields on the left side of the screen, we find the field named "CommandLine".
 ![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/cbadabb2-25de-4162-8b1b-e15d36781f93)
