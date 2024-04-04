@@ -414,7 +414,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 -- Redirection Connection
 - cerberhhyed5frqa.xmfir().win
 
-## Conclusion:
+## Conclusion
 The workshop provided a comprehensive understanding of conducting cybersecurity investigations using Splunk, particularly in the context of a ransomware attack. By leveraging different data sources and utilizing advanced search queries, participants gained insights into the attack timeline, malicious activities, and the impact on the organization's infrastructure. The detailed analysis demonstrated the importance of proactive threat detection, timely incident response, and continuous monitoring to mitigate the risk of ransomware attacks and other cybersecurity threats. Overall, the workshop equipped attendees with valuable skills and techniques essential for effective incident response and threat mitigation in cybersecurity operations.
 
 ## Important Points
