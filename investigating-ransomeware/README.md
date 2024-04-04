@@ -1,4 +1,5 @@
-![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/4ea8b705-5910-466c-acf8-c58f170161e7)# Investigating Ransomware with Splunk
+![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/4ea8b705-5910-466c-acf8-c58f170161e7)
+# Investigating Ransomware with Splunk
 
 ## Overview
 Conducting investigations is a core component of cybersecurity. When we detect something, it's essential to figure out what happened by asking questions like: who, what, where, when, why, and how. Investigations can be either reactive or proactive, depending on the context.
