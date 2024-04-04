@@ -397,3 +397,20 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 ```
 ![image28](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/377d6deb-0e6e-4330-bcae-157f80782f02)
 
+### Threat Details:
+- **Hostname:** we8105desk
+- **IP Address:** 192.168.250.100
+- **USB Key Name:** MIRANDA_PRI
+- **Malicious File:** Miranda_Tate_unveiled.dotm 
+
+## File Server
+- **Hostname:** we9041srv
+- **IP Address:** 192.168.250.20, 92.22.104.182
+- **File Name:** mhtr.jpg
+
+### Initial Connection
+- solidaritedeproximite.org
+
+### Redirection Connection
+- cerberhhyed5frqa.xmfir().win
+
