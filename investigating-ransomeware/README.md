@@ -1,4 +1,3 @@
-![image](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/4ea8b705-5910-466c-acf8-c58f170161e7)
 # Investigating Ransomware with Splunk
 
 ## Overview
@@ -384,7 +383,10 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 - stream:dns
 
 - To initiate a search query for the specific IP address "192.168.250.100", you can use the following search query:
-![image27](https github.com/michaelsayala/splunk-boss-soc/assets/110712766/55b7f5f1-4b3b-4258-bf29-2bf43b2f1d5a)
+  ```
+     index=botsv1 sourcetype=stream:DNS src=192.168.250.100 record_type=A
+  ```
+![image27](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/12da23ad-b9ad-4ad0-9082-070e47c2a953)
 
 - To find out if there was a Cerber ransomware attempt to directly reuse the URL filter that was whitelisted before, you can use the following search query:
 
