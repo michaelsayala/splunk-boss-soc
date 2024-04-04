@@ -166,7 +166,12 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 ![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/cbadabb2-25de-4162-8b1b-e15d36781f93)
 
 - Using the Text Function "len" to return the character length of a string, we can identify the command with the longest length:
-
+   ```
+      index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational *.exe CommandLine=* host=we8105desk EventCode=1 
+      | eval length=len(CommandLine) 
+      | table CommandLine length 
+      | sort - length
+   ```
 ![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9fc3cef3-3a4e-4fad-aef3-f75f979eca91)
 
 ### Threat Details:
@@ -182,7 +187,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational, winregistry
 
-Using our threat details search again for the host and finding the top destination IP address:
+- Using our threat details search again for the host and finding the top destination IP address:
 
   ```
      index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational host=we8105desk src=we8105desk.waynecorpinc.local 
@@ -190,18 +195,18 @@ Using our threat details search again for the host and finding the top destinati
   ```
 ![image11](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/e03c9e6b-324d-4d3d-b65d-e8511ed7553c)
 
-  - Using the keyword "fileshare" on winregistry, we can see all the file shares that happened on the host:
+- To view all file shares that occurred on the host using the keyword "fileshare" in winregistry logs, you can execute the following search query:
 ![image12](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/fe093dd5-1ad0-4a7f-bb8c-ac1164b971c5)
 
-  - Expanding the raw logs to see the file path of the file share, we use the key_path field name to get the top file path:
+- Expanding the raw logs to view the file path of the file share, we can utilize the "key_path" field name to retrieve the top file path:
 ![image13](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/854a9f67-76f6-4d13-8bee-64f420865dde)
 
-  - To get the hostname of that IP Address on the file share, we filter the IP address and use the top command on the dest_host field name:
+- To obtain the hostname corresponding to the IP address involved in the file share, you can filter the IP address and then use the "top" command on the "dest_host" field name:
 
-```
-index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 192.168.250.20 
-| top dest_host
-```
+   ```
+      index=botsv1 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 192.168.250.20 
+      | top dest_host
+   ```
 ![image14](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/b52821b4-13db-4b95-b35c-30dcf33a9c68)
 
 ### Threat Details:
