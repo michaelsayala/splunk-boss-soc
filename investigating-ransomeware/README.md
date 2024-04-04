@@ -414,3 +414,39 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 -- Redirection Connection
 - cerberhhyed5frqa.xmfir().win
 
+## Conclusion:
+The workshop provided a comprehensive understanding of conducting cybersecurity investigations using Splunk, particularly in the context of a ransomware attack. By leveraging different data sources and utilizing advanced search queries, participants gained insights into the attack timeline, malicious activities, and the impact on the organization's infrastructure. The detailed analysis demonstrated the importance of proactive threat detection, timely incident response, and continuous monitoring to mitigate the risk of ransomware attacks and other cybersecurity threats. Overall, the workshop equipped attendees with valuable skills and techniques essential for effective incident response and threat mitigation in cybersecurity operations.
+
+## Important Points
+
+Here are some of the important points I have noted during this workshop, and I have been using these throughout my experience in the Security Operation Center (SOC).
+
+1. Initial Identifier Utilization:
+
+- Emphasize the importance of leveraging initial identifiers such as timestamps, hostnames, IP addresses, and keywords to streamline the investigation process.
+- Utilizing these identifiers helps in narrowing down the scope of the investigation and focusing on relevant data sources.
+
+2. External Resources:
+
+- Encourage participants to refer to reputable articles or blogs to understand the meaning and context of each data source.
+- External resources provide valuable insights into interpreting data and understanding its significance within the investigation.
+
+3. Exploration of Interesting Fields:
+
+- Encourage participants to explore lesser-known or unique fields within data sources.
+- Identifying and analyzing these fields can uncover hidden patterns or indicators of compromise.
+
+4. SPL (Search Processing Language):
+
+- Stress the importance of proficiency in SPL for effective data analysis in Splunk.
+- SPL enables users to perform complex searches, correlations, and visualizations to uncover insights from data.
+
+5. Data Source Knowledge:
+
+- Highlight the significance of being knowledgeable about the data sources integrated into Splunk.
+- Understanding the structure, content, and significance of each data source enhances the efficiency and effectiveness of investigations.
+
+6.Shannon Entropy:
+
+- Introduce Shannon Entropy as a metric for measuring the randomness or unpredictability of data.
+- Shannon Entropy can be utilized to identify anomalous or suspicious patterns within data, aiding in threat detection and analysis.
