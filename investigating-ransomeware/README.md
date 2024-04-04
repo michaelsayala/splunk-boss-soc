@@ -128,7 +128,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
-- Using the search query provided on the Splunk App, we can find the infected system on an external drive:
+- Using the search query provided in the Splunk App, we can identify the infected system on an external drive:
 
    ```
       index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational host=we8105desk (CommandLine="*d:\\*" OR ParentCommandLine="*d:\\*") 
@@ -151,13 +151,13 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
-Using the initial search provided by the app, we can see all the executable files:
+- Using the initial search provided by the app, we can retrieve all the executable files:
 ![image9](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/29e1219b-e76a-4549-a2d8-e281ee680ec8)
 
-Expanding all the fields on the left side screen, we see the field name "CommandLine":
+- Expanding all the fields on the left side of the screen, we find the field named "CommandLine".
 ![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/cbadabb2-25de-4162-8b1b-e15d36781f93)
 
-Using the Text Function "len" to return the character length of a string, we can find the command with the top length:
+- Using the Text Function "len" to return the character length of a string, we can identify the command with the longest length:
 
 ![image10](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/9fc3cef3-3a4e-4fad-aef3-f75f979eca91)
 
