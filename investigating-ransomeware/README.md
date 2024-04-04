@@ -70,7 +70,7 @@ Conducting investigations is a core component of cybersecurity. When we detect s
 - By clicking on the 'source' field in the left-hand panel, we can see the top sources."
 ![image3](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/e1d0ebd5-9153-498a-be21-2a9becb1fd9f)
 
-- There are several commands available in Splunk to achieve the desired results. In this case, I will utilize the top command to retrieve the top 10 src_ip by default.
+- There are several commands available in Splunk to achieve the desired results. In this case, I will utilize the top command to retrieve the top 10 src_ip by default. Upon observation, the top IP for the src_ip field is "192.168.250.100". We can assume that this is the hostname we are looking for.
 
     ```spl
     index=botsv1 we8105desk sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational | top src_ip
@@ -85,10 +85,10 @@ Conducting investigations is a core component of cybersecurity. When we detect s
 
 **Question:** What is the name of the USB key inserted by Bob Smith?
 
-If we don’t know much about USB drives and Windows, the first thing you could do is Google for something like the search terms below and do some reading:
+If you're unfamiliar with USB drives and Windows, a good starting point is to conduct a Google search using terms like the following and read through relevant resources: These articles were provided in the Splunk App.
 
-- finding the usb name in windows registry logs
-- finding windows registry usb name site:microsoft.com
+Finding the USB name in Windows registry logs
+Finding Windows registry USB name site:microsoft.com
 
 **Resources:**
 - [USB Device Registry Entries]([usb_device_registry_entries_link](https://learn.microsoft.com/en-gb/windows-hardware/drivers/usbcon/?redirectedfrom=MSDN))
@@ -97,15 +97,15 @@ If we don’t know much about USB drives and Windows, the first thing you could 
 **Sourcetypes:**
 - Winregistry
 
-By searching `“index=botsv1 sourcetype=winregistry friendlyname”`, we can use the “friendlyname” keyword given in the article.
+By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize the "friendlyname" keyword provided in the article.
 
 ![image5](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/045b15cd-0c3c-410f-b890-2332d1e9a66c)
 
-- Expand the raw logs to see the full details of the logs as well as the different fields. By doing this you can look for fields that you can use to filter much more specific events related to this USB.
+- Expand the raw logs to view the complete details of the logs, including different fields. This allows you to identify fields that can be used to filter more specific events related to this USB.
 
 ![image6](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/b85f85e7-8b0e-4573-84f7-ff89aae60316)
 
-- Based on the search filter we have gathered, I built an optimized and specific search query to find the USB key name:
+- Based on the search filter we have gathered, I have constructed an optimized and specific search query to find the USB key name:
 
     ```
     (index=botsv1 sourcetype=winregistry object=friendlyname object_category=registry dest=we8105desk event_status="(0)The operation completed successfully.")
