@@ -214,7 +214,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 - **USB Key Name:** MIRANDA_PRI
 - **Malicious File:** Miranda_Tate_unveiled.dotm 
 
-## File Server
+-- File Server
 - **Hostname:** we9041srv
 - **IP Address:** 192.168.250.20
 
@@ -247,7 +247,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 - **USB Key Name:** MIRANDA_PRI
 - **Malicious File:** Miranda_Tate_unveiled.dotm 
 
-## File Server
+-- File Server
 - **Hostname:** we9041srv
 - **IP Address:** 192.168.250.20
 
@@ -284,12 +284,12 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 - **USB Key Name:** MIRANDA_PRI
 - **Malicious File:** Miranda_Tate_unveiled.dotm 
 
-## File Server
+-- File Server
 - **Hostname:** we9041srv
 - **IP Address:** 192.168.250.20, 92.22.104.182
 - **File Name:** mhtr.jpg
 
-### Initial Connection
+-- Initial Connection
 - solidaritedeproximite.org
 
 ### 8. Event Chaining - Identifying Parent/Child Processes
