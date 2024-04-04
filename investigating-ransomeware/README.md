@@ -310,7 +310,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
    | reverse 
    | table _time ParentCommandLine ParentProcessId ProcessId CommandLine
 ```
-![image20](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/bdb0afd7-3930-4b6e-98c9-98c36de056e9)
+![image20](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/28436d02-4368-4d62-ac01-b5e114120718)
 
 ### 9. Determine Which Signatures Specific to the Ransomware Alerted
 
@@ -319,10 +319,10 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - suricata
 
-Searching the Suricata logs and filtering the signature type to "cerber":
+- To search the Suricata logs and filter the signature type to "cerber," you can use the following search query:
 ![image21](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/c0c38e66-eb5d-46ad-88e5-1364c6dd4303)
 
-- Suricata signatures and IDs sorted from lowest to highest:
+- To display Suricata signatures and IDs sorted from lowest to highest, you can use the following search query:
 ```
    index=botsv1 sourcetype=suricata alert.signature=*cerber* 
    | stats count by alert.signature alert.signature_id 
@@ -340,11 +340,11 @@ Searching the Suricata logs and filtering the signature type to "cerber":
 **Sourcetypes:**
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
-- Searching all `.txt` file extensions in Windows Sysmon Logs:
+- To search for all .txt file extensions in Windows Sysmon Logs, you can use the following search query:
 
 ![image23](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/f038b966-78dd-4526-bb48-6a4c1ddbc09b)
 
-- Filtering the specific "Event Code 2" and `TargetFilename` of the target user:
+- To filter specific "Event Code 2" and TargetFilename of the target user in Windows Sysmon logs, you can use the following search query:
 
   ```
    index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational host=we8105desk *.txt EventCode=2 TargetFilename="C:\\Users\\bob.smith.WAYNECORPINC\\*.txt" 
@@ -362,12 +362,11 @@ Searching the Suricata logs and filtering the signature type to "cerber":
 **Sourcetypes:**
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
-- Search through all "win" sourcetypes and filter the keyword "pdf":
+- To search through all "win" sourcetypes and filter the keyword "pdf", you can use the following search query:
 
 ![image25](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/5d9f9497-2adb-42a2-9230-e647c67cf454)
 
-- Add the source address of the machine and count the unique PDF files in the "Relative_Target_Name" field name:
-
+- To add the source address of the machine and count the unique PDF files in the "Relative_Target_Name" field name, you can use the following search query:
 ```
    index=botsv1 sourcetype=*win* pdf dest=we9041srv.waynecorpinc.local Source_Address=192.168.250.100 
 | stats dc(Relative_Target_Name) AS unique_count
@@ -384,10 +383,10 @@ Searching the Suricata logs and filtering the signature type to "cerber":
 **Sourcetypes:**
 - stream:dns
 
-- Initial search query for the specific ip address "192.168.250.100"
+- To initiate a search query for the specific IP address "192.168.250.100", you can use the following search query:
 ![image27](https github.com/michaelsayala/splunk-boss-soc/assets/110712766/55b7f5f1-4b3b-4258-bf29-2bf43b2f1d5a)
 
-- To find out the cerber ransomeware attempt to direct re-use the url filter we whitelist before
+- To find out if there was a Cerber ransomware attempt to directly reuse the URL filter that was whitelisted before, you can use the following search query:
 
 ```
    index=botsv1 sourcetype=stream:DNS src=192.168.250.100 record_type=A NOT (query{}=*.microsoft.com OR query{}=*.waynecorpinc.local OR query{}=*.bing.com OR query{}=isatap OR query{}=wpad OR query{}=*.windows.com OR query{}=*.msftncsi.com) 
@@ -396,7 +395,3 @@ Searching the Suricata logs and filtering the signature type to "cerber":
 ```
 ![image28](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/377d6deb-0e6e-4330-bcae-157f80782f02)
 
-
-
-
- 
