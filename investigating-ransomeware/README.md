@@ -196,7 +196,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 ![image11](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/e03c9e6b-324d-4d3d-b65d-e8511ed7553c)
 
 - To view all file shares that occurred on the host using the keyword "fileshare" in winregistry logs, you can execute the following search query:
-![image12](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/fe093dd5-1ad0-4a7f-bb8c-ac1164b971c5)
+![image12](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/96c7b887-b570-4d25-867f-502c26b8ebad)
 
 - Expanding the raw logs to view the file path of the file share, we can utilize the "key_path" field name to retrieve the top file path:
 ![image13](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/854a9f67-76f6-4d13-8bee-64f420865dde)
@@ -226,13 +226,13 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - stream:dns
 
-- To find the historical traffic from the IP address "192.168.250.100", I initiated the following search:
+- To find the historical traffic from the IP address "192.168.250.100", you can initiate the following search:
    ```
       index=botsv1 sourcetype=stream:DNS src=192.168.250.100
    ```
    ![image15](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/4346acee-fe95-4c8b-b7b6-bbe5fb59fb62)
 
-- By using the app filter to exclude legitimate domains and specifying the source and destination IP addresses, it became easier to identify the traffic:
+- By utilizing the app filter to exclude legitimate domains and specifying the source and destination IP addresses, it became easier to identify the traffic:
     ```
           index=botsv1 sourcetype=stream:DNS src=192.168.250.100 record_type=A NOT (query{}=*.microsoft.com OR query{}=*.waynecorpinc.local OR query{}=*.bing.com 
           OR query{}=isatap OR query{}=wpad OR query{}=*.windows.com OR query{}=*.msftncsi.com) 
@@ -262,7 +262,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - stream:http, suricata, fgt_utm
 
-- Starting with the source IP address "192.168.250.100" and the suspicious domain "solidaritedeproxomite.org", filter for stream logs:
+- Starting with the source IP address "192.168.250.100" and the suspicious domain "solidaritedeproxomite.org", you can filter for stream logs using the following search query:
 
 ```
    index=botsv1 sourcetype=stream:http src=192.168.250.100 url=*solidaritedeproximite.org*
@@ -271,7 +271,7 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 ![image17](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/06f7720e-c547-47c9-ac09-1984c1f5d8cd)
 
 
-- Since we have seen a suspicious image on that domain, check the FortiGate firewall for the data it captured from "mhtr.jpg":
+- To check the FortiGate firewall for the data it captured from the suspicious image "mhtr.jpg," you can use the following search query:
   
 ```
    index=botsv1 sourcetype=fgt_utm src=192.168.250.100 mhtr.jpg 
@@ -300,10 +300,10 @@ By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize 
 **Sourcetypes:**
 - XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 
-Starting with this query below to filter `121214.tmp` on Sysmon logs:
+- Starting with the query below to filter 121214.tmp on Sysmon logs:
 ![image19](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/ce462d0e-672e-4bdc-a80b-acf132a9c661)
 
-- Focusing on the `CommandLine` field name and displaying important fields in tabular form from this search query:
+- Focusing on the CommandLine field name and displaying important fields in tabular form from this search query:
 
 ```
    index=botsv1 sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational 121214.tmp CommandLine=* 
