@@ -1,6 +1,6 @@
 # Splunk Boss of the SOC
 
-I will use this repository for my notes and writeu-ups to complete the free BOTS workshop offered by Splunk.
+I will use this repository for my notes and write-ups to complete the free BOTS workshop offered by Splunk.
 
 ## Workshop Overview
 
