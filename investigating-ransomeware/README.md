@@ -446,7 +446,7 @@ Here are some of the important points I have noted during this workshop, and I h
 - Highlight the significance of being knowledgeable about the data sources integrated into Splunk.
 - Understanding the structure, content, and significance of each data source enhances the efficiency and effectiveness of investigations.
 
-6.Shannon Entropy:
+6. Shannon Entropy:
 
 - Introduce Shannon Entropy as a metric for measuring the randomness or unpredictability of data.
 - Shannon Entropy can be utilized to identify anomalous or suspicious patterns within data, aiding in threat detection and analysis.
