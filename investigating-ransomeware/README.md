@@ -62,6 +62,9 @@ Conducting investigations is a core component of cybersecurity. When we detect s
 **Procedure:** Since a timestamp and hostname are provided, we can use these details to find the IP address of we8105desk.
 
 - By searching for "index=botsv1 we8105desk" and adjusting the timestamp to August 24, 2016, we can now access all the data sources related to the incident.
+     ```
+      index=botsv1 we8105desk
+     ```
 ![image_1](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/c170cedc-84af-4f01-8a9a-583d1d906c7d)
 
 - By clicking on the 'host' field on the left side, we can view the top hosts.
@@ -98,7 +101,9 @@ Finding Windows registry USB name site:microsoft.com
 - Winregistry
 
 By searching "index=botsv1 sourcetype=winregistry friendlyname", we can utilize the "friendlyname" keyword provided in the article.
-
+   ```
+      index=botsv1 sourcetype=winregistry friendlyname
+   ```
 ![image5](https://github.com/michaelsayala/splunk-boss-soc/assets/110712766/045b15cd-0c3c-410f-b890-2332d1e9a66c)
 
 - Expand the raw logs to view the complete details of the logs, including different fields. This allows you to identify fields that can be used to filter more specific events related to this USB.
